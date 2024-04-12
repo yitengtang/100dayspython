@@ -1,0 +1,39 @@
+import art
+print(art.logo)
+
+def add(n1, n2):
+  return n1+n2
+def subtract(n1,n2):
+  return n1-n2
+def multiply(n1,n2):
+  return n1*n2
+def divid(n1,n2):
+  return n1/n2
+operation={"+":add,
+         "-":subtract,
+         "*":multiply,
+         "/":divid}
+def calculator():
+  end_of_calculation =False
+  
+  num1 = float(input("What's the first number?: "))
+  for key in operation:
+     print(key)
+  
+  while not end_of_calculation:
+    operation_symbol = input("Pick an operation from the line above: ")
+    num2 = float(input("What's the second number?: "))
+    
+    
+    calculation_function =operation[operation_symbol]
+    answer = calculation_function(num1,num2)
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+    choice = input(f"Type 'y' to continue calculating with {answer}, or type 'n' to exit or start a new claculation: ")
+    if choice == "n":
+      end_of_calculation = True
+      calculator()
+    else:
+      num1 = answer
+      
+ 
+calculator()
