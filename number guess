@@ -1,0 +1,57 @@
+#Number Guessing Game Objectives:
+
+# Include an ASCII art logo.
+# Allow the player to submit a guess for a number between 1 and 100.
+# Check user's guess against actual answer. Print "Too high." or "Too low." depending on the user's answer. 
+# If they got the answer correct, show the actual answer to the player.
+# Track the number of turns remaining.
+# If they run out of turns, provide feedback to the player. 
+# Include two different difficulty levels (e.g., 10 guesses in easy mode, only 5 guesses in hard mode).
+import random
+
+def initial():
+  print("Welcome to the Number Guessing Game!")
+  print("I am thinking of a number between 1 and 100.")
+  random_number = random.randint(1,100)
+  return random_number
+#determine the game level function
+def game_level():
+  user_choose_level = input("Choose a difficulty. Type 'easy' or 'hard': ")
+  if user_choose_level =='easy':
+    attempt = 10
+  else:
+    attempt = 5
+  return attempt
+#check if guess number == answer
+def check_answer(guess_number, answer,attempt):
+  if guess_number == answer:
+    print("You got it!")
+    return True
+  elif guess_number > answer:
+    print("too high")  
+  else:
+    print("too low")
+     
+  return False
+#check the rest of the attempts
+#def check_attempt(attempt):
+
+
+
+
+#def a function to run the game
+def game():
+  answer = initial()
+  #print(f"the correct answer is {answer}")
+  attempt =game_level()
+  
+  #guess_number = int(input("Make a guess: "))
+  while attempt >0:
+    print(f"You have {attempt} attempts remaining to guess the number.")
+    guess_number = int(input("Make a guess: "))
+    if check_answer(guess_number, answer,attempt):
+        return
+    attempt-=1
+    #check_attempt(attempt)
+
+game()
