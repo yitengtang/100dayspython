@@ -104,7 +104,7 @@ def compare_score(user_score,computer_score):
 def blackjack():
 
   while True:
-    print(art.logo)
+    print(art.logo_blackjack)
     clear()
     user_card, computer_card = initial_card()
     print(f"Your cards: {user_card}, current score: {calculate_score(user_card)}")
