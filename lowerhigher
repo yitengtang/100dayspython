@@ -35,6 +35,8 @@ def game():
   first_data = random_data()
   second_data= random_data()
   while True:
+    while first_data == second_data:
+        second_data=random_data()
     
     print(f"Compare A: : {first_data['name']}, a {first_data['description']}, from {first_data['country']}")
     print(art.vs)
