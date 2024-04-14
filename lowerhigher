@@ -1,0 +1,82 @@
+import art
+import game_data
+import random
+from replit import clear
+#define a function to generate a random data from the game_data folder
+def random_data():
+  return random.choice(game_data.data)
+#convert user choice to be first or second data
+def allocat_first_second(first_data,second_data, user_choice):
+  if user_choice.upper() == 'A':
+    return first_data
+  else:
+    return second_data
+#define a function to verify the user's answer, correct or not correct
+def compare_followers(first_data, second_data, user_choice, score):
+  first_followers = first_data['follower_count']
+  second_followers = second_data['follower_count']
+  # Assuming user_choice is already the dictionary of the chosen 'A' or 'B'
+  user_choice_followers = user_choice['follower_count']
+
+  # Debug print to check values
+  print(f"First: {first_followers}, Second: {second_followers}, User's Choice: {user_choice_followers}")
+
+  if user_choice_followers == max(first_followers, second_followers):
+      clear()
+      print(f"You're right! Current score: {score + 1}")
+      return score + 1  # Increase score
+  else:
+      print(f"Sorry, that's wrong. Final score: {score}")
+      return False  # Game over
+
+def game():
+  print(art.logo)
+  score = 0
+  first_data = random_data()
+  second_data= random_data()
+  while True:
+    
+    print(f"Compare A: : {first_data['name']}, a {first_data['description']}, from {first_data['country']}")
+    print(art.vs)
+    print(f"Against B: : {second_data['name']}, a {second_data['description']}, from {second_data['country']}")
+    user = input('Who has more follower? Type "A" or "B": ')
+    
+ 
+    user_choice = allocat_first_second(first_data, second_data, user)
+    
+    result = compare_followers(first_data, second_data, user_choice,score)
+    if result == False:
+      break
+    else:
+      score = result
+      first_data = second_data
+      second_data = random_data()
+   
+    
+
+  
+  
+game()
+
+""""
+def compare_followers(first_data, second_data, user_choice,score):
+  first_felllowers = first_data['follower_count']
+  second_fellowers = second_data['follower_count']
+  user_choice_count = user_choice['follower_count']
+  print(first_felllowers,second_fellowers,user_choice_count)
+
+  max_fellower = max(first_felllowers,second_fellowers)
+  print(max_fellower)
+  if user_choice == max_fellower:
+    print(f"You're right! Current score: {score+1}")
+    score+=1
+    return score
+  else:
+    print(f"Sorry, that's wrong. Final score: {score}")
+    return False
+
+  Error:
+  line 70 user_choice is a dic should use user_choice_count
+    """"
+
+
