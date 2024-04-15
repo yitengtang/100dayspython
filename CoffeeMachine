@@ -25,9 +25,9 @@ MENU = {
 }
 
 resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
+    "water/ml": 300,
+    "milk/ml": 200,
+    "coffee/g": 100,
 }
 
 #TODO: 1 Prompt user by asking 'what would you like?(espresso/latte/capuccino)'.
@@ -80,18 +80,30 @@ def update_resource(User_choice, MENU, resources):
         #print(resources)
     return resources
 
+#report the rest of resources when user type report
+def check_resource(resources):
+    for key in resources:
+        print(f"{key}: {resources[key]}")
+
 
 
 #TODO: 5 Creat a function to collect the coins from the user, return the total money from the user inserted
 
-while True:
+is_on = True
+while is_on:
     User_choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
-    confirm_user_choice = comfirm_resource(User_choice, MENU, resources)
-    #print(confirm_user_choice)
-    if confirm_user_choice == True:
-        coins = coin_collection()
-        #print(coins)
-        enough_coin = compare_coins(coins,MENU, User_choice)
-        if enough_coin == True:
-            print(f"Here is your {User_choice} Coffee ☕")
-            update_resource(User_choice, MENU, resources)
+
+    if User_choice == 'off':
+        is_on = False
+    elif User_choice == 'report':
+        check_resource(resources)
+    else:
+        confirm_user_choice = comfirm_resource(User_choice, MENU, resources)
+        #print(confirm_user_choice)
+        if confirm_user_choice == True:
+            coins = coin_collection()
+            #print(coins)
+            enough_coin = compare_coins(coins,MENU, User_choice)
+            if enough_coin == True:
+                print(f"Here is your {User_choice} Coffee ☕")
+                update_resource(User_choice, MENU, resources)
