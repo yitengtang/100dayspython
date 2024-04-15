@@ -23,11 +23,17 @@ MENU = {
         "cost": 3.0,
     }
 }
+profit = 0
 
 resources = {
-    "water/ml": 300,
-    "milk/ml": 200,
-    "coffee/g": 100,
+    "water": 300,
+    "milk": 200,
+    "coffee": 100,
+}
+resources_unit = {
+    "water": 'ml',
+    "milk": 'ml',
+    "coffee": 'g',
 }
 
 #TODO: 1 Prompt user by asking 'what would you like?(espresso/latte/capuccino)'.
@@ -81,9 +87,9 @@ def update_resource(User_choice, MENU, resources):
     return resources
 
 #report the rest of resources when user type report
-def check_resource(resources):
+def check_resource(resources,resources_unit):
     for key in resources:
-        print(f"{key}: {resources[key]}")
+        print(f"{key}: {resources[key]}{resources_unit[key]}")
 
 
 
@@ -96,7 +102,7 @@ while is_on:
     if User_choice == 'off':
         is_on = False
     elif User_choice == 'report':
-        check_resource(resources)
+        check_resource(resources,resources_unit)
     else:
         confirm_user_choice = comfirm_resource(User_choice, MENU, resources)
         #print(confirm_user_choice)
@@ -107,3 +113,5 @@ while is_on:
             if enough_coin == True:
                 print(f"Here is your {User_choice} Coffee ☕")
                 update_resource(User_choice, MENU, resources)
+                profit+=MENU[User_choice]['cost']
+                #print(profit)
