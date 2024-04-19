@@ -1,0 +1,39 @@
+import tkinter as tk
+
+window = tk.Tk()
+#window.minsize(500, 500)
+window.title('Mile to Km Converter')
+window.config(padx=20, pady=20)
+
+#entry let user input the number of miles
+input = tk.Entry()
+input.config(width = 5)
+input.grid(column=1,row=0)
+
+#create miles label behin the first input
+label = tk.Label(text = "Miles")
+label.grid(column=2,row=0)
+
+#creat second label to is equal to
+label2 = tk.Label(text = "is equal to")
+label2.grid(column=0,row=1)
+
+#creat third lable that used to replace the converted value
+label3 = tk.Label(text = ' ')
+
+label3.grid(column=1,row=1)
+
+#creat 4th label that is the unit after convert
+label4 = tk.Label(text = "Km")
+label4.grid(column=2,row=1)
+
+#create the button that user click it and it will convert the input value
+def convert():
+    miles = float(input.get())
+    km = miles * 1.609
+    label3.config(text=f"{km:.2f}")
+
+button = tk.Button(text = "Convert", command = convert)
+button.grid(column=1,row=2)
+
+window.mainloop()
